@@ -5,20 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mvc.domain.Board;
 import com.example.demo.mvc.service.BoardService;
 
-/*
- * 게시판 컨트롤러
- * @author dong
-*/
-
 @RestController
+@RequestMapping("/board")
 public class BoardController {
-
 	@Autowired
 	private BoardService boardService;
 	
@@ -46,8 +41,9 @@ public class BoardController {
 	 * @param board
 	 */
 	@GetMapping("/save") //실무에서는 data를 저장,삭제 할 때 Get보다는 POST,PUT,DELETE를 사용하는 것이 좋다.
-	public void save(Board board) {
-		boardService.save(board);
+	public int save(Board parameter) {
+		boardService.save(parameter);
+		return parameter.getBoardSeq();
 	}
 
 	/*

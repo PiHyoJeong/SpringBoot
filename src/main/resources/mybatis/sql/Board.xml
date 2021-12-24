@@ -9,10 +9,20 @@
 			B.CONTENTS,
 			B.REG_DATE
 		FROM T_BOARD B
+		ORDER BY B.REG_DATE DESC
+	</select>
+	
+	<select id="get" parameterType="int" resultType="com.example.demo.mvc.domain.Board">
+		SELECT
+			B.BOARD_SEQ,
+			B.TITLE,
+			B.CONTENTS,
+			B.REG_DATE
+		FROM T_BOARD B
 		WHERE B.BOARD_SEQ = #{boardSeq}
 	</select>
 	
-	<insert id="save" parameterType="com.example.demo.mvc.domain.Board">
+	<insert id="save" parameterType="com.example.demo.mvc.domain.Board" useGeneratedKeys="true" keyProperty="boardSeq">
 		INSERT INTO T_BOARD
 		(
 			TITLE,

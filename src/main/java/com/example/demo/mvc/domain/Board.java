@@ -1,6 +1,6 @@
 package com.example.demo.mvc.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Board {
 	private int boardSeq;
@@ -31,6 +31,4 @@ public class Board {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
-	
 }

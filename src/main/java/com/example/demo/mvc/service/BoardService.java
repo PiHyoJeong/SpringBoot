@@ -10,7 +10,6 @@ import com.example.demo.mvc.repository.BoardRepository;
 
 @Service
 public class BoardService {
-
 	@Autowired
 	private BoardRepository repository;
 	
@@ -35,16 +34,14 @@ public class BoardService {
 	 * 등록 처리
 	 * @param board
 	 */
-	public void save(Board board) {
-		repository.save(board);
-	}
-
-	/*
-	 * 업데이트 처리
-	 * @param board
-	 */
-	public void update(Board board) {
-		repository.update(board);
+	public void save(Board parameter) {
+		//조회하여 리턴된 정보
+		Board board = repository.get(parameter.getBoardSeq());
+		if(board==null) {
+			repository.save(parameter);
+		}else {
+			repository.update(parameter);
+		}
 	}
 
 	/*
@@ -54,5 +51,4 @@ public class BoardService {
 	public void delete(int boardSeq) {
 		repository.delete(boardSeq);
 	}
-	
 }
